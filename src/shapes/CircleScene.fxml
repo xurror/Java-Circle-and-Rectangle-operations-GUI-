@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="shapes.CircleSceneController">
+    <children>
+      <Label layoutX="208.0" layoutY="51.0" text="CIRCLE">
+         <font>
+            <Font name="Bookman Old Style" size="36.0" />
+         </font>
+      </Label>
+      <Label fx:id="show_circumference" layoutX="324.0" layoutY="221.0" text="circumference">
+         <font>
+            <Font name="Bookman Old Style" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="show_area" layoutX="327.0" layoutY="253.0" text="area">
+         <font>
+            <Font name="Bookman Old Style" size="18.0" />
+         </font>
+      </Label>
+      <Button contentDisplay="CENTER" defaultButton="true" layoutX="183.0" layoutY="219.0" mnemonicParsing="false" onAction="#setCircumferenceButtonClicked" prefHeight="26.0" prefWidth="120.0" text="Circumference">
+         <font>
+            <Font name="Bookman Old Style" size="14.0" />
+         </font>
+      </Button>
+      <Button contentDisplay="CENTER" defaultButton="true" layoutX="183.0" layoutY="251.0" mnemonicParsing="false" onAction="#setAreaButtonClicked" prefHeight="26.0" prefWidth="120.0" text="Area">
+         <font>
+            <Font name="Bookman Old Style" size="14.0" />
+         </font>
+      </Button>
+      <TextField fx:id="input_radius" layoutX="283.0" layoutY="123.0" promptText="radius">
+         <effect>
+            <DropShadow />
+         </effect>
+         <font>
+            <Font name="Lucida Bright Regular" size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="input_color" layoutX="283.0" layoutY="163.0" promptText="color">
+         <effect>
+            <DropShadow />
+         </effect>
+         <font>
+            <Font name="Lucida Bright Regular" size="14.0" />
+         </font>
+      </TextField>
+      <Text layoutX="183.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Radius">
+         <effect>
+            <Glow />
+         </effect>
+         <font>
+            <Font name="Bookman Old Style" size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="183.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Color">
+         <effect>
+            <Glow />
+         </effect>
+         <font>
+            <Font name="Bookman Old Style" size="14.0" />
+         </font>
+      </Text>
+      <Button contentDisplay="CENTER" defaultButton="true" layoutX="43.0" layoutY="302.0" mnemonicParsing="false" onAction="#setSummaryButtonClicked" prefHeight="21.0" prefWidth="91.0" text="Summary">
+         <font>
+            <Font name="Bookman Old Style" size="14.0" />
+         </font>
+      </Button>
+      <Text fx:id="show_results" layoutX="43.0" layoutY="349.0" strokeType="OUTSIDE" strokeWidth="0.0">
+         <effect>
+            <Glow />
+         </effect>
+         <font>
+            <Font name="Bookman Old Style" size="14.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
