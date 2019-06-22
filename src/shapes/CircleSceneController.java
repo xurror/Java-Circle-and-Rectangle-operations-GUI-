@@ -5,15 +5,21 @@
  */
 package shapes;
 
+import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 
 /**
@@ -84,30 +90,27 @@ public class CircleSceneController implements Initializable {
     }
     
     @FXML
-    public void setSummaryButtonClicked(Event event){
-        System.out.println("You Clicked Summary");
+    public void setDisplay(Event event) throws IOException{
         
-        if (input_radius.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "One or more fields are empty");
-        }
-        else{
-            double radius = Double.parseDouble(input_radius.getText());
-            String color = null;
+        double radius = Double.parseDouble(input_radius.getText());
+        String color = input_color.getText().toString();
             
-            if (input_color.getText().isEmpty())
-                color = "Black";
-            else
-                color = input_color.getText().toString();                         
-            
-            Circle circle = new Circle(radius, color);
-            String area = String.valueOf(df.format(circle.area()));
-            String circumference = String.valueOf(
-                    df.format(circle.circumference()));
-            
-            show_results.setText("A "+color+" circle of circumference "
-            +circumference+" and area "+area+".");
-                    
-        }
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("DrawCircle.fxml"));
+        loader.load();
+        Parent parent = loader.getRoot();
+
+        Scene scene = new Scene(parent);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();                                                        
+
+        stage.hide();
+        stage.setScene(scene);
+
+        DrawCircleController drawCircle = loader.getController();
+        drawCircle.setCircleParams(color, radius);
+
+        stage.setTitle("CIRCLE");                            
+        stage.show();  
     } 
     
 }
