@@ -5,15 +5,19 @@
  */
 package shapes;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 
 /**
@@ -30,9 +34,7 @@ public class RectangleSceneController implements Initializable {
     @FXML
     private Label show_area;
     @FXML
-    private Label show_perimeter;
-    @FXML
-    private Label show_results;
+    private Label show_perimeter;    
     
     @FXML
     private TextField input_length;
@@ -86,32 +88,28 @@ public class RectangleSceneController implements Initializable {
     }
     
     @FXML
-    public void setSummaryButtonClicked(Event event){
-        System.out.println("You Clicked Summary");
+    public void setDisplay(Event event) throws IOException{
+        double length = Double.parseDouble(input_length.getText());
+        double width = Double.parseDouble(input_width.getText());
+        String color = input_color.getText().toString();
+                
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("DrawRectangle.fxml"));
+        loader.load();
+        Parent parent = loader.getRoot();
+
+        Scene scene = new Scene(parent);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();                                                        
+
+        stage.hide();
+        stage.setScene(scene);
+
+        DrawRectangleController drawRectangle = loader.getController();
+        drawRectangle.setRectangleParams(color, length, width);
+
+        stage.setTitle("RECTANGLE");                            
+        stage.show();
         
-        if (input_length.getText().isEmpty() 
-                && input_width.getText().isEmpty()){
-            
-            JOptionPane.showMessageDialog(null, "One or more fields are empty");
-        }
-        else{
-            double length = Double.parseDouble(input_length.getText());
-            double width = Double.parseDouble(input_width.getText());
-            String color = null;
-            
-            if (input_color.getText().isEmpty())
-                color = "Black";
-            else
-                color = input_color.getText().toString(); 
-            
-            Rectangle rectangle = new Rectangle(length, width, color);
-            String area = String.valueOf(rectangle.area());
-            String perimeter = String.valueOf(rectangle.perimeter());
-            
-            show_results.setText("A "+color+" rectangle of perimenter "
-                    +perimeter+" and "+" area "+area);
-                    
-        }
     }
     
 }
